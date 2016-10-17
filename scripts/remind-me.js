@@ -11,20 +11,21 @@
 
 module.exports = function(robot) {
 
-  // Handler for "hubot remind me to <task> in <sec> seconds"
-  robot.respond(/remind me to (.+) in (\d+) seconds?$/i, function(msg) {
-    let task = msg.match[1];
-    let numSeconds = msg.match[2];
+    // Handler for "hubot remind me to <task> in <sec> seconds"
+    robot.respond(/remind me to (.+) in (\d+) seconds?$/i, function(msg) {
+        let task = msg.match[1];
+        let numSeconds = msg.match[2];
 
-    // As soon as the command is issued, the hubot will reply with:
+        // As soon as the command is issued, the hubot will reply with:
 
-    // > OK. I'll remind you to <task> in <numSeconds> seconds.
-    msg.send("OK. I'll remind you to ", task, " in ", numSeconds, " seconds.");
-    // A timeout is then set, so that the hubot will reply with the
-    // following after `numSeconds` seconds:
+        // > OK. I'll remind you to <task> in <numSeconds> seconds.
+        msg.send("OK. I'll remind you to ", task, " in ", numSeconds, " seconds.");
+        // A timeout is then set, so that the hubot will reply with the
+        // following after `numSeconds` seconds:
 
-    // > Don't forget to <task>!
-    
-
-  });
+        // > Don't forget to <task>!
+        setTimeout(function() {
+            msg.send("Don\'t forget to ", task, "!");
+        }, numSeconds);
+    });
 };
