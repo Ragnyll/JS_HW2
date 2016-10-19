@@ -81,23 +81,17 @@ module.exports = function(robot) {
             } else if (files.length === 0) {
                 msg.reply("The list is empty!");
             } else {
-                console.log("here1");
                 for (let file of files) {
                     fs.readFile((DATA_DIR + '/' + file),
                         function read(err, data) {
-                            content = data;
-                            console.log(data);
-                            console.log("here3");
+                            let content = data;
                             if (err) {
-                                console.log("here4");
                                 msg.reply("Uh oh! Had trouble opening a todo...");
                             } else {
-                                console.log("here5");
-                                msg.reply("IVE GOT THE MESSAGE!")
+                                msg.reply(file + ": " + data);
                             }
                         });
                 }
-
             }
         });
 
