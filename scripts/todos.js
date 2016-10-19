@@ -120,6 +120,15 @@ module.exports = function(robot) {
         // > OK! I added <todo> to the todo list
 
         // Note that file names have no extensions. They are just UUIDs.
+        let id = uuid.v4()
+        console.log(id);
+        fs.writeFile((DATA_DIR + '/' + id), todo, function(err) {
+            if (err) {
+                msg.reply("Oh no... I couldn't write the todo file...");
+            } else {
+                msg.reply("OK! I added " + todo + " to the todo list");
+            }
+        });
 
     });
 
