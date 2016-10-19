@@ -145,6 +145,12 @@ module.exports = function(robot) {
         // Otherwise, it replies with
 
         // > OK! Removed <id>
-
+        fs.unlink((DATA_DIR + '/' + id), function(err) {
+            if (err) {
+                msg.reply("Couldnt find " + id);
+            } else {
+                msg.reply("OK! Removed " + id);
+            }
+        });
     });
 };
