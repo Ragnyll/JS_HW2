@@ -50,6 +50,16 @@ module.exports = function(robot) {
     // hubot should reply with:
 
     // > The headline site was empty!
+    msg.reply("Okey doke. I'll go fetch a headline!");
+    request.get(HEADLINE_URL, function(err, response, body) {
+      if(err) {
+        msg.reply("I couldn't get any headlines...");
+      }
+      else {
+        let headlines = body.split('\n')
+        msg.reply(headlines[Math.floor(Math.random() * headlines.length)]);
+      }
+    });
 
   });
 };
