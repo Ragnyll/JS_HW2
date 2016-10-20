@@ -19,13 +19,13 @@ module.exports = function(robot) {
         // As soon as the command is issued, the hubot will reply with:
 
         // > OK. I'll remind you to <task> in <numSeconds> seconds.
-        msg.send("OK. I'll remind you to ", task, " in ", numSeconds, " seconds.");
+        msg.send("OK. I'll remind you to " + task + " in " + numSeconds + " seconds.");
         // A timeout is then set, so that the hubot will reply with the
         // following after `numSeconds` seconds:
 
         // > Don't forget to <task>!
         setTimeout(function() {
-            msg.send("Don\'t forget to ", task, "!");
+            msg.send("Don\'t forget to "+ task + "!");
         }, numSeconds * 1000);
     });
 };
