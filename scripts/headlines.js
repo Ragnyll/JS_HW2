@@ -57,15 +57,14 @@ module.exports = function(robot) {
       }
       else {
         let headlines = body.split('\n')
-        for (let line of headlines) {
-          line.trim();
+        for (let l in headlines) {
+          l.trim();
         }
         //get lines wih length > 0
-        _.filter(headlines, function(headline) {
-          return headline == '';
-        });
+        _.without(headlines, '');
+        console.log(headlines);
         if(headlines.length == 0) {
-          console.log("The headline site was empty!");
+          msg.reply("The headline site was empty!");
         } else {
             msg.reply(_.sample(headlines));
         }
