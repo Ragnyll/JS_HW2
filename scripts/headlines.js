@@ -57,7 +57,18 @@ module.exports = function(robot) {
       }
       else {
         let headlines = body.split('\n')
-        msg.reply(headlines[Math.floor(Math.random() * headlines.length)]);
+        for (let line of headlines) {
+          line.trim();
+        }
+        //get lines wih length > 0
+        _.filter(headlines, function(headline) {
+          return headline == '';
+        });
+        if(headlines.length == 0) {
+          console.log("ITS ALL BLANK FAM");
+        } else {
+            msg.reply(_.sample(headlines));
+        }
       }
     });
 
