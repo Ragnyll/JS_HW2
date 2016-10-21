@@ -61,8 +61,7 @@ module.exports = function(robot) {
           l.trim();
         }
         //get lines wih length > 0
-        _.without(headlines, '');
-        console.log(headlines);
+        headlines = _.without(headlines, '');
         if(headlines.length == 0) {
           msg.reply("The headline site was empty!");
         } else {
