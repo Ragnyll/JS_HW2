@@ -22,53 +22,52 @@ var _ = require('underscore');
 
 var HEADLINE_URL = process.env.HEADLINE_URL;
 if (HEADLINE_URL == null) {
-  HEADLINE_URL = 'http://cpl.mwisely.xyz/hw/5/headlines.txt';
+    HEADLINE_URL = 'http://cpl.mwisely.xyz/hw/5/headlines.txt';
 }
 
 module.exports = function(robot) {
 
-  // Handler for 'hubot show me a headline'
-  robot.respond(/show me a headline$/i, function(msg) {
-    // Use the `request` library (which is already installed by NPM) to
-    // send a request to HEADLINE_URL. When the request is complete, the
-    // provided callback will receive three parameters: `error`,
-    // `response`, and `body`.
+    // Handler for 'hubot show me a headline'
+    robot.respond(/show me a headline$/i, function(msg) {
+        // Use the `request` library (which is already installed by NPM) to
+        // send a request to HEADLINE_URL. When the request is complete, the
+        // provided callback will receive three parameters: `error`,
+        // `response`, and `body`.
 
-    // If the error parameter **has no value** (hint, hint) or if the
-    // response's status code is not 200 (`HTTP OK`), then the hubot
-    // should reply with:
+        // If the error parameter **has no value** (hint, hint) or if the
+        // response's status code is not 200 (`HTTP OK`), then the hubot
+        // should reply with:
 
-    // > I couldn't get any headlines...
+        // > I couldn't get any headlines...
 
-    // Otherwise, the request must have succeeded. In that case, the
-    // hubot should reply with a random headline from the
-    // newline-delimited response body. The hubot should never reply
-    // with an empty headline.
+        // Otherwise, the request must have succeeded. In that case, the
+        // hubot should reply with a random headline from the
+        // newline-delimited response body. The hubot should never reply
+        // with an empty headline.
 
-    // If there were zero lines with content (i.e., the page was only
-    // whitespace (new lines, carriage returns, tabs, etc.), then the
-    // hubot should reply with:
+        // If there were zero lines with content (i.e., the page was only
+        // whitespace (new lines, carriage returns, tabs, etc.), then the
+        // hubot should reply with:
 
-    // > The headline site was empty!
-    msg.reply("Okey doke. I'll go fetch a headline!");
-    request.get(HEADLINE_URL, function(err, response, body) {
-      if(err) {
-        msg.reply("I couldn't get any headlines...");
-      }
-      else {
-        let headlines = body.split('\n')
-        for (let l in headlines) {
-          l.trim();
-        }
-        //get lines wih length > 0
-        headlines = _.without(headlines, '');
-        if(headlines.length == 0) {
-          msg.reply("The headline site was empty!");
-        } else {
-            msg.reply(_.sample(headlines));
-        }
-      }
+        // > The headline site was empty!
+        msg.reply("Okey doke. I'll go fetch a headline!");
+        request.get(HEADLINE_URL, function(err, response, body) {
+            if (err) {
+                msg.reply("I couldn't get any headlines...");
+            } else {
+                let headlines = body.split('\n')
+                for (let l in headlines) {
+                    l.trim();
+                }
+                //get lines wih length > 0
+                headlines = _.without(headlines, '');
+                if (headlines.length == 0) {
+                    msg.reply("The headline site was empty!");
+                } else {
+                    msg.reply(_.sample(headlines));
+                }
+            }
+        });
+
     });
-
-  });
 };
