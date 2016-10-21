@@ -65,7 +65,7 @@ module.exports = function(robot) {
           return headline == '';
         });
         if(headlines.length == 0) {
-          console.log("ITS ALL BLANK FAM");
+          console.log("The headline site was empty!");
         } else {
             msg.reply(_.sample(headlines));
         }
