@@ -19,7 +19,13 @@ module.exports = function(robot) {
         // As soon as the command is issued, the hubot will reply with:
 
         // > OK. I'll remind you to <task> in <numSeconds> seconds.
-        msg.send("OK. I'll remind you to " + task + " in " + numSeconds + " seconds.");
+        // pluralize second when its greater than 1 second try the ternary
+        if (numSeconds == 1) {
+            msg.reply("OK. I'll remind you to " + task + " in " + numSeconds + " second.");
+        }
+        else {
+            msg.reply("OK. I'll remind you to " + task + " in " + numSeconds + " seconds.");
+        }
         // A timeout is then set, so that the hubot will reply with the
         // following after `numSeconds` seconds:
 
