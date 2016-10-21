@@ -31,7 +31,7 @@ module.exports = function(robot) {
 
         // > Don't forget to <task>!
         setTimeout(function() {
-            msg.send("Don\'t forget to "+ task + "!");
+            msg.reply("Don\'t forget to "+ task + "!");
         }, numSeconds * 1000);
     });
 };
